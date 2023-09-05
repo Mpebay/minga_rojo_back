@@ -1,7 +1,13 @@
 import express from 'express';
-import userRouter from "./users.js"
+import mangasRouter from "./mangas.js"
+import chaptersRouter from "./chapters.js"
+
 let router = express.Router();
 
-router.use("/", userRouter)
+
+router.use("/chapters", chaptersRouter)
+router.use("/mangas", mangasRouter)
+
+
 
 export default router;
