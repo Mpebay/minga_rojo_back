@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/chapters', chaptersRouter); // Usamos el enrutador de capítulos en la ruta /api/chapters
+// app.use('/api/chapters', chaptersRouter); // Usamos el enrutador de capítulos en la ruta /api/chapters
 
 app.use(function (req, res, next) {
   next(createError(404));

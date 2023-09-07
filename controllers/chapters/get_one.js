@@ -11,11 +11,12 @@ let get_one = async(req,res, next) => {
              manga_id: all.manga_id,
              order: all.order + 1, 
             }).select('_id')
+            console.log("next");
             console.log(next);
             return res.status(200).json({
                 succes: true,
                 all,
-                next: next._id 
+                next: next?._id 
             })
         }
             return res.status(404).json({
