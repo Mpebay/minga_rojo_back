@@ -7,7 +7,10 @@ async function orderChapters(req, res, next){
     if(req.query.page) pagination.page = req.query.page
     if(req.query.quantity) pagination.limit = req.query.quantity
     try {
-        const allChapters = await Chapter.find({manga_id}).sort({order: 1})
+        const allChapters = await Chapter.find({manga_id}).sort({order: 1}).populate({
+            path: "manga_id",
+            select: "title"
+        })
         .skip(pagination.page > 0 ? (pagination.page-1)*6 : 0)
         .limit(pagination.limit > 0 ? pagination.limit : 0 )
         res.json(allChapters)

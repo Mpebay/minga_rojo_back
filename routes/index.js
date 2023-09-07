@@ -6,7 +6,7 @@ let router = express.Router();
 
 
 router.use("/chapters", chaptersRouter)
-router.use("/mangas", mangasRouter)
+router.use("/manga", mangasRouter)
 
 
 
