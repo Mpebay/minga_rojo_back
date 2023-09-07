@@ -1,5 +1,6 @@
 import  {__dirname}  from './utils.js';
 import "dotenv/config.js"
+import "./config/database.js"
 import cors from "cors"
 import createError  from'http-errors';
 import express  from 'express';
@@ -7,8 +8,6 @@ import path  from 'path';
 import cookieParser  from 'cookie-parser';
 import logger  from 'morgan';
 import indexRouter  from './routes/index.js';
-import mongoose from 'mongoose';
-import "./config/database.js"
 
 const app = express();
 
