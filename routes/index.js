@@ -1,18 +1,18 @@
-import express from 'express';
-import mangasRouter from "./mangas.js"
+import authorsRouter from './authors.js';
+import mangasRouter from './mangas.js';
+import categoriesRouter from './categories.js';
 import chaptersRouter from "./chapters.js"
-
-let router = express.Router();
-
-router.use("/chapters", chaptersRouter)
-router.use("/manga", mangasRouter)
-
 import userRouter from "./users.js"
-import categoriesRouter from "./categories.js"
+import express from 'express';
 
-router.use("/", userRouter)
+let router = Router();
+
+router.use("/auth", userRouter)
+router.use("/authors", authorsRouter)
 router.use("/mangas", mangasRouter)
 router.use("/categories", categoriesRouter)
-
+router.use("/chapters", chaptersRouter)
+router.use("/manga", mangasRouter)
+router.use("/", userRouter)
 
 export default router;
