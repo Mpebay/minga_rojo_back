@@ -1,6 +1,9 @@
-import { Router } from "express";
-import read from "../controllers/authors/read.js";
-const router = Router();
+import express from "express";
+import { getAllAuthors, getAuthors } from "../controllers/author/read_me.js";
+let router = express.Router();
 
-router.get("/", read);
+router.get("/", getAllAuthors);
+router.get("/me/:id", getAuthors);
+
 export default router;
+
