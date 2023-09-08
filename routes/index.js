@@ -5,7 +5,7 @@ import chaptersRouter from "./chapters.js"
 import userRouter from "./users.js"
 import express from 'express';
 
-let router = Router();
+let router = express.Router();
 
 router.use("/auth", userRouter)
 router.use("/authors", authorsRouter)

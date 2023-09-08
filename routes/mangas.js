@@ -1,9 +1,9 @@
-import read from "../controllers/mangas/read.js";
+import readAll from "../controllers/mangas/readAll.js";
 import express from 'express';
 import readManga from '../cotrollers/mangas/read_one.js';
 import read from '../controller/mangas/read.js';
 
-const router = Router();
+const router = express.Router();
 
 router.get("/", read);
 router.get("/:id", readManga)
