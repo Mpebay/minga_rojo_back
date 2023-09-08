@@ -6,3 +6,4 @@ router.get("/", getAllAuthors);
 router.get("/me/:id", getAuthors);
 
 export default router;
+
