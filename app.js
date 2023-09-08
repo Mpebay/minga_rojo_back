@@ -1,16 +1,15 @@
 import { __dirname } from './utils.js';
 import 'dotenv/config.js';
+import './config/database.js';
 import cors from 'cors';
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import mongoose from 'mongoose';
 import indexRouter from './routes/index.js';
-import chaptersRouter from './routes/chapters.js'; // Agregamos el enrutador de capítulos
-
-import './config/database.js';
+import mongoose from 'mongoose';
+import chaptersRouter from './routes/chapters.js'; 
 
 const app = express();
 
@@ -25,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-// app.use('/api/chapters', chaptersRouter); // Usamos el enrutador de capítulos en la ruta /api/chapters
 
 app.use(function (req, res, next) {
   next(createError(404));

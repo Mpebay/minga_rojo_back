@@ -1,6 +1,13 @@
-import { Router } from "express";
 import read from "../controllers/mangas/read.js";
+import express from 'express';
+import readManga from '../cotrollers/mangas/read_one.js';
+import read from '../controller/mangas/read.js';
+
 const router = Router();
 
 router.get("/", read);
+router.get("/:id", readManga)
+
 export default router;
+
+
