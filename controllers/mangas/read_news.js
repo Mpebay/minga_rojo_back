@@ -21,7 +21,6 @@ async function getNewMangasAuthor(req, res, next) {
       const oldsMangas = sortedMangas.slice(-2);
       const combinedMangas = [...newsMangas, ...oldsMangas];
       res.json({
-        response: allAuthorMangas,
         all: combinedMangas,
       });
     } else if (allAuthorMangas.length >= 8) {
@@ -31,7 +30,6 @@ async function getNewMangasAuthor(req, res, next) {
       const newsMangas = sortedMangas.slice(0, 4);
       const oldsMangas = sortedMangas.slice(-4);
       res.json({
-        response: allAuthorMangas,
         news: newsMangas,
         olds: oldsMangas,
       });
