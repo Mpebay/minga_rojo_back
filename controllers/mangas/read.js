@@ -11,7 +11,7 @@ async function read(req, res, next){
     if(req.query.title) queries.title = new RegExp(req.query.title.trim(),'i') 
     if(req.query.category) queries.category_id = req.query.category.split(",")
     let count = await Manga.estimatedDocumentCount()
-    let mangas = await Manga.find(queries).populate("category_id", "name -_id").populate("author_id", "name -_id").sort({title:order})
+    let mangas = await Manga.find(queries).populate("category_id", "name color -_id").populate("author_id", "name -_id").sort({title:order})
     .skip( pagination.page > 0 ? (pagination.page-1)*4 : 0 ) 
     .limit( pagination.limit > 0 ? pagination.limit : 0 ) 
     
@@ -19,14 +19,7 @@ async function read(req, res, next){
     let nextPage = pagination.page * pagination.limit < count ? Number(pagination.page) + 1 : null;
 
     return res.status(200).json({
-        mangas: mangas.map(manga => ({
-            id: manga._id,
-            title: manga.title,
-            description: manga.description,
-            category: manga.category_id.name,
-            author: manga.author_id.name,
-            cover_photo: manga.cover_photo
-        })),
+        mangas: mangas,
         prev: prevPage,
         page: Number(pagination.page),
         next: nextPage

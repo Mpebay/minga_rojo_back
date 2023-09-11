@@ -1,7 +1,7 @@
 import getNewMangasAuthor from "../controllers/mangas/read_news.js";
 import express from "express";
-import readManga from "../cotrollers/mangas/read_one.js";
-import read from "../controller/mangas/read.js";
+import readManga from "../controllers/mangas/read_one.js";
+import read from "../controllers/mangas/read.js";
 
 const router = express.Router();
 router.get("/new/:id", getNewMangasAuthor);
