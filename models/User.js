@@ -1,4 +1,4 @@
-import { Schema,model } from 'mongoose'
+import { Schema, model } from 'mongoose'
 
 let collection = 'users'            
 let schema = new Schema({           

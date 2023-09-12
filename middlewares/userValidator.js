@@ -1,0 +1,11 @@
+const validator = (schema) => (req,res,next) => {
+    const validation = schema.validate(req.body)
+    if(validation.error) {
+        res.status(400).json({
+            success: false,
+            message: validation.error.details.map((error) => error.message)
+        })
+    } 
+    return next()
+}
+export default validator
