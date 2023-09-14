@@ -13,7 +13,7 @@ const findCategoryId = async (req, res, next) => {
     return res.status(404).json({
       success: false,
       response: null,
-      menssage: "category not found",
+      message: "category not found",
     });
   } catch (err) {
     return res.status(500).json({
