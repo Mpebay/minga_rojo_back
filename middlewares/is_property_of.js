@@ -1,5 +1,4 @@
 import Manga from '../models/manga.js';
-
 const isPropertyOf = (req, res, next) => {
     const mangaId = req.params.mangaId;
     const manga = Manga.findById(mangaId);
@@ -12,6 +11,4 @@ const isPropertyOf = (req, res, next) => {
             message: 'You are not authorized to perform this action'
         })
     }
-}
-
 export default isPropertyOf;
