@@ -2,7 +2,6 @@ import Category from "../../models/Category.js";
 
 const findCategoryId = async (req, res, next) => {
   try {
-    console.log(req.body);
     const category = await Category.findOne({
       name: req.body.category_id,
     });

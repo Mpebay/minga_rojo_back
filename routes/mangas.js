@@ -16,7 +16,7 @@ router.get("/", read);
 router.get("/:id", readManga);
 router.post(
   "/",
-  //passport.authenticate("jwt", { session: false }), para que funcionara tuve que sacar el passport ya que no tenia forma de auteticar con token
+  //passport.authenticate("jwt", { session: false }),  para que funcionara tuve que sacar el passport ya que no tenia forma de auteticar con token
   findCategoryId,
   mangaValidator(schema),
   createOne
