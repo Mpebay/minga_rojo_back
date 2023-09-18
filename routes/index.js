@@ -13,7 +13,7 @@ router.use("/mangas", mangasRouter)
 router.use("/categories", categoriesRouter)
 router.use("/chapters", chaptersRouter)
 router.use("/manga", mangasRouter)
-router.use("/", userRouter)
+
 
 
 export default router;
