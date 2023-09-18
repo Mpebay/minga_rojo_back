@@ -4,7 +4,7 @@ const validator = (schema) => (req, res, next)  =>{
         return res.status(400).json({
             success: false,
             message: validation.error.details.map(error => error.message),      
-        }) /*mapeo de errores*/
+        })
     }
     return next ()
 }

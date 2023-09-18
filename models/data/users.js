@@ -45,4 +45,3 @@ let users = [{
 }]
 
 User.insertMany(users)
-//el método requiere un array con los datos a insertar en mongo
