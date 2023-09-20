@@ -12,12 +12,15 @@ import signout from "../controllers/auth/signout.js";
 import userSchema from "../schema/userSchema.js";
 import hasheador from "../middlewares/hasheador.js";
 import findEmail from "../middlewares/findEmail.js";
+import signinToken from "../controllers/auth/signinToken.js";
+
 
 const router = Router();
 router.get("/", read);
 router.post("/signin",validator(userValidator), accountNotExists, passwordIsOk, generateToken, signin )
 router.post("/signout", passport.authenticate("jwt", {session:false}), signout)
 router.post('/register', findEmail, validator(userSchema), hasheador, register);
+router.post("/signinToken",passport.authenticate("jwt", {session:false}),signinToken)
 
 export default router;
 
