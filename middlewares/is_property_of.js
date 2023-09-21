@@ -1,4 +1,5 @@
 import Manga from "../models/Manga.js";
+
 const isPropertyOf = (req, res, next) => {
   const mangaId = req.params.mangaId;
   const manga = Manga.findById(mangaId);
@@ -12,4 +13,5 @@ const isPropertyOf = (req, res, next) => {
     });
   }
 };
+
 export default isPropertyOf;
