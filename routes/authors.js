@@ -1,18 +1,19 @@
 import express from "express";
 import { getAllAuthors, getAuthors } from "../controllers/authors/read_me.js";
 import admin from "../controllers/authors/admin/admin.js";
-import passport from "../milddleware/passport.js";
 import update from "../controllers/authors/admin/update.js";
-import finds_id from "../controllers/authors/admin/finds_id.js"
+import passport from "../milddleware/passport.js";
+import passportAdmin from "../middlewares/passport.js";
+import finds_id_admin from "../controllers/authors/admin/finds_id_admin.js"
 
 let router = express.Router();
 
 router.get("/", getAllAuthors);
 router.get("/me/:id", getAuthors);
-router.put("/role/author/:id",passport.authenticate("jwt", {session:false}),finds_id,update)
+router.put("/role/author/:id",passportAdmin.authenticate("jwt", {session:false}),finds_id_admin,update)
 router.get(
   "/admin",
-   passport.authenticate("jwt", { session: false }),
+   passportAdmin.authenticate("jwt", { session: false }),
   admin
 );
 
