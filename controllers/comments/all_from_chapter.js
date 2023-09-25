@@ -4,14 +4,9 @@ import User from "../../models/User.js";
 export const getAllCommentsFromChapter = async (req, res, next) => {
   try {
     const { chapter_id, manga_id } = req.query;
-
-    // Paginación
     const page = parseInt(req.query.page) || 1;
     const limit = 4;
-
     const skip = (page - 1) * limit;
-
-    // Consulta para obtener comentarios ordenados por fecha de creación
     const query = {
       chapter_id,
       manga_id,
@@ -46,4 +41,3 @@ export const getAllCommentsFromChapter = async (req, res, next) => {
     });
   }
 };
-
