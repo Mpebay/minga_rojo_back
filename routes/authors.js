@@ -2,7 +2,6 @@ import express from "express";
 import { getAllAuthors, getAuthors } from "../controllers/authors/read_me.js";
 import admin from "../controllers/authors/admin/admin.js";
 import update from "../controllers/authors/admin/update.js";
-import passport from "../milddleware/passport.js";
 import passportAdmin from "../middlewares/passport.js";
 import finds_id_admin from "../controllers/authors/admin/finds_id_admin.js"
 

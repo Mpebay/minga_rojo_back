@@ -2,7 +2,6 @@ import Author from "../../../models/Author.js";
 
 async function finds_id_admin(req, res, next) {
     const {id}  = req.params;
-    console.log(id,"hola");
     try {
         const author = await Author.findOne({ _id: id });
         console.log(author)

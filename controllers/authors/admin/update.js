@@ -1,4 +1,3 @@
-import Author from "../../../models/Author.js";
 import User from "../../../models/User.js";
 
 const update = async(req , res, next)=>{
