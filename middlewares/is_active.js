@@ -1,16 +1,18 @@
 import Author from '../models/Author.js'
 
-async function finds_id(req, res, next) {
-    const { _id } = req.user;
+async function is_active(req, res, next) {
+    const { id } = req.user;
     try {
-        console.log(req.user)
-        console.log("Hola")
-        const idAuthor = await Author.findOne({ user_id: _id });
+        const idAuthor = await Author.findOne({ user_id: id });
         if (idAuthor) {
-            req.author = idAuthor
-            console.log(idAuthor)
-            console.log("estoy en if")
-            next();
+            if (idAuthor.active) {
+                next();
+            } else {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Author not active',
+                });
+            }
         } else {
             return res.status(400).json({
                 success: false,
@@ -25,4 +27,4 @@ async function finds_id(req, res, next) {
         });
     }
 }
-export default finds_id;
+export default is_active;
