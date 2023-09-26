@@ -22,5 +22,6 @@ router.post("/signout", passport.authenticate("jwt", {session:false}), signout)
 router.post('/register', findEmail, validator(userSchema), hasheador, register);
 router.post("/signinToken",passport.authenticate("jwt", {session:false}),signinToken)
 
+
 export default router;
 

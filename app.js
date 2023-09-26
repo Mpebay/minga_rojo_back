@@ -8,8 +8,6 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
-import mongoose from 'mongoose';
-import chaptersRouter from './routes/chapters.js'; 
 import errorHandler from './middlewares/error_handler.js';
 import notFoundHandler from './middlewares/not_found_handler.js';
 
@@ -27,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
+
 app.use(function (req, res, next) {
   next(createError(404));
 });
@@ -40,5 +39,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 export default app;
