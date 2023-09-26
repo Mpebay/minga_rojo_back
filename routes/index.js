@@ -4,6 +4,7 @@ import categoriesRouter from './categories.js';
 import chaptersRouter from "./chapters.js"
 import userRouter from "./users.js"
 import express from 'express';
+import commentsRouter from './comments.js';
 
 
 let router = express.Router();
@@ -14,7 +15,7 @@ router.use("/mangas", mangasRouter)
 router.use("/categories", categoriesRouter)
 router.use("/chapters", chaptersRouter)
 router.use("/manga", mangasRouter)
-
+router.use("/comments", commentsRouter)
 
 
 

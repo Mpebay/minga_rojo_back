@@ -1,3 +1,4 @@
+
 import Manga from '../models/Manga.js';
 
 export default async function is_property_of(req, res, next) {
@@ -17,14 +18,3 @@ export default async function is_property_of(req, res, next) {
     }
 
     return res.json({
-      success: false,
-      message: "You are not the owner of this manga"
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error"
-    });
-  }
-}

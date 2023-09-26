@@ -16,10 +16,10 @@ import destroy from "../controllers/chapters/destroy.js"
 
 const router = express.Router();
 
-
-router.get("/", getChapters);
-router.get('/me', passport.authenticate('jwt', { session: false }), find_id, isPropertyOf, get_me);
 router.get("/:id", get_one);
+router.get("/", getChapters);
+router.post ("/", passport.authenticate("jwt", {session:false}), isPropertyOf, addCoverPhoto, validator(chapterValidator), create)
+router.get('/me', passport.authenticate('jwt', { session: false }), find_id, isPropertyOf, get_me);
 router.post ("/", addCoverPhoto, validator(chapterValidator), create)
 router.put("/:id",passport.authenticate('jwt', { session: false }), find_id, is_active, isPropertyOf, validator(validateChapter), update)
 router.delete('/:id', passport.authenticate('jwt', { session: false }), find_id,is_active ,isPropertyOf, destroy);
