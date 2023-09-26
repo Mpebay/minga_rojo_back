@@ -23,14 +23,8 @@ router.get("/new/:id", getNewMangasAuthor);
 router.get("/allMangas", readAll);
 router.get("/", read);
 router.get("/:id", readManga);
+router.post("/", passport.authenticate("jwt", { session: false }), findCategoryId, mangaValidator(schema),createOne);
 router.put("/:id", passport.authenticate("jwt", { session: false }), finds_id, is_active, isPropertyManga, validator(updateMangaSchema), updateManga);
 router.delete("/:id", passport.authenticate("jwt", { session: false }), finds_id, is_active, isPropertyManga, destroyManga);
-router.post(
-  "/",
-  //passport.authenticate("jwt", { session: false }),  para que funcionara tuve que sacar el passport ya que no tenia forma de auteticar con token
-  findCategoryId,
-  mangaValidator(schema),
-  createOne
-);
 
 export default router;
