@@ -8,8 +8,6 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
-import mongoose from 'mongoose';
-import chaptersRouter from './routes/chapters.js'; 
 import errorHandler from './middlewares/error_handler.js';
 import notFoundHandler from './middlewares/not_found_handler.js';
 import passport from './middlewares/passport.js';
@@ -36,7 +34,5 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
 
 export default app;

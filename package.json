@@ -12,6 +12,8 @@
     "data": "node ./models/data/mangas.js"
   },
   "dependencies": {
+    "@mercadopago/sdk-js": "^0.0.3",
+    "@mercadopago/sdk-react": "^0.0.14",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
@@ -23,6 +25,7 @@
     "joi": "^17.10.1",
     "joi-oid": "^1.1.2",
     "jsonwebtoken": "^9.0.2",
+    "mercadopago": "^1.5.17",
     "mongoose": "^7.5.0",
     "morgan": "~1.9.1",
     "nodemon": "^3.0.1",

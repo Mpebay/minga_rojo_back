@@ -1,30 +1,32 @@
 import Author from '../models/Author.js'
 
-async function is_active(req, res, next) {
-    const { id } = req.user;
+const findAuthor = async (req, res, next) => {
     try {
-        const idAuthor = await Author.findOne({ user_id: id });
-        if (idAuthor) {
-            if (idAuthor.active) {
-                next();
-            } else {
+        const foundAuthor = await Author.findOne({user_id: req.user._id});
+        if (foundAuthor) {
+            if(foundAuthor.active===true){
+                next()
+            }else{
                 return res.status(400).json({
                     success: false,
-                    message: 'Author not active',
-                });
+                    message: "Author is not active",
+                    response: null
+                })
             }
-        } else {
-            return res.status(400).json({
+        }else{
+            return res.status(404).json({
                 success: false,
-                message: 'Author not found',
-            });
+                message: "Author not found",
+                response: null
+            })
         }
     } catch (error) {
-        console.error(error);
         return res.status(500).json({
             success: false,
-            message: 'Server Error',
-        });
+            message: "Error interno del servidor",
+            response: null
+        })
     }
 }
-export default is_active;
+
+export default findAuthor

@@ -1,17 +1,20 @@
-import Manga from "../models/Manga.js";
 
-const isPropertyOf = (req, res, next) => {
-  const mangaId = req.params.mangaId;
-  const manga = Manga.findById(mangaId);
-  if (manga.author_id === req.author._id) {
-    next();
-  } else {
-    res.status(401).json({
-      success: false,
-      response: null,
-      message: "You are not authorized to perform this action",
-    });
-  }
-};
+import Manga from '../models/Manga.js';
 
-export default isPropertyOf;
+export default async function is_property_of(req, res, next) {
+  try {
+    let mangaFind = await Manga.findById( req.query.manga_id );
+    console.log(req.query)
+    
+    if (!mangaFind) {
+      return res.status(404).json({
+        success: false,
+        message: "Manga not found with the given ID"
+      });
+    }
+
+    if (req.author._id.toString() === mangaFind.author_id.toString()) {
+      return next();
+    }
+
+    return res.json({
