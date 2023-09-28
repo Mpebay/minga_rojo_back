@@ -1,14 +1,39 @@
 import app from '../app.js';
 import debugModule from 'debug';
 import http from 'http';
+/* import { Server } from 'socket.io' */
+
+
+
+
+
 const debug = debugModule("minga_rojo_back:server")
 
 let port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 let server = http.createServer(app);
+/* const io = new Server(server, { cors: { origin: '*' } });
+app.get('/', (req, res) => {
+  res.sendFile(new URL('http://localhost:5173/socket', import.meta.url).pathname);
+});
+// Eventos del servidor
+io.on('connection', (socket) => {
+  console.log('a user connected')
+  // Cuando un usuario se conecta
+  socket.on('join', (username) => {
+    // Anunciar que el usuario se ha conectado
+    io.emit('user-joined', username);
+  });
 
-server.listen(port, ()=> console.log("server listen " + port) );
+  // Cuando un usuario envía un mensaje
+  socket.on('message', (message) => {
+    // Enviar el mensaje a todos los usuarios conectados
+    io.emit('message', message);
+  });
+}); */
+
+server.listen(port, () => console.log("server listen " + port));
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -16,12 +41,12 @@ function normalizePort(val) {
   let port = parseInt(val, 10);
 
   if (isNaN(port)) {
-   
+
     return val;
   }
 
   if (port >= 0) {
-    
+
     return port;
   }
 
@@ -37,7 +62,7 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
- 
+
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');

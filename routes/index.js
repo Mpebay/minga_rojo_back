@@ -5,6 +5,8 @@ import chaptersRouter from "./chapters.js"
 import userRouter from "./users.js"
 import express from 'express';
 import commentsRouter from './comments.js';
+import dialogflow from "./dialogflow.js"
+
 
 
 let router = express.Router();
@@ -16,6 +18,7 @@ router.use("/categories", categoriesRouter)
 router.use("/chapters", chaptersRouter)
 router.use("/manga", mangasRouter)
 router.use("/comments", commentsRouter)
+router.use("/google", dialogflow)
 
 
 
