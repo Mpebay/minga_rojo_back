@@ -16,14 +16,21 @@ import updateManga from "../controllers/mangas/update.js";
 import destroyManga from "../controllers/mangas/destroy.js";
 import updateMangaSchema from "../schema/updateMangaSchema.js";
 import validator from "../milddleware/validator.js";
+import multer from "multer";
+import fileFilter from "../middlewares/imgTransform/filterImg.js";
+import { imageUrl } from "../middlewares/chapters/imageUrl.js";
 
+const storage = multer.memoryStorage()
+const upload = multer({storage : storage,
+                        fileFilter : fileFilter})
 const router = express.Router();
+
 router.get("/me", passport.authenticate("jwt", { session: false }), finds_id, getMyMangas);
 router.get("/new/:id", getNewMangasAuthor);
 router.get("/allMangas", readAll);
 router.get("/", read);
 router.get("/:id", readManga);
-router.post("/", passport.authenticate("jwt", { session: false }), findCategoryId, mangaValidator(schema),createOne);
+router.post("/",upload.single("file"), passport.authenticate("jwt", { session: false }), findCategoryId,imageUrl, mangaValidator(schema),createOne);
 router.put("/:id", passport.authenticate("jwt", { session: false }), finds_id, is_active, isPropertyManga, validator(updateMangaSchema), updateManga);
 router.delete("/:id", passport.authenticate("jwt", { session: false }), finds_id, is_active, isPropertyManga, destroyManga);
 

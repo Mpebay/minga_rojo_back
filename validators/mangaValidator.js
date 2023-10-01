@@ -13,10 +13,10 @@ const mangaValidator = Joi.object({
     "string.uri": "Debes poner un url valido",
     "string.min": "El url es demasiado corto",
   }),
-  description: JoiOid.string().min(5).max(300).messages({
+  description: JoiOid.string().min(5).max(700).messages({
     "string.empty": "Debes poner una descripcion",
-    "string.min": "La descripcion debe tener entre 5 y 300 caracteres",
-    "string.max": "La descripcion debe tener entre 5 y 300 caracteres",
+    "string.min": "La descripcion debe tener entre 5 y 700 caracteres",
+    "string.max": "La descripcion debe tener entre 5 y 700 caracteres",
   }),
   category_id: JoiOid.objectId(),
 });

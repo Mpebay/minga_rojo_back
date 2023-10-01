@@ -10,7 +10,12 @@ import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import errorHandler from './middlewares/error_handler.js';
 import notFoundHandler from './middlewares/not_found_handler.js';
-import passport from './middlewares/passport.js';
+import admin from "firebase-admin";
+
+const serviceAccount = "./firebaseCredentials.json"; 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 const app = express();
 
