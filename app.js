@@ -9,11 +9,22 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import bodyParser from 'body-parser'
-
-const router = express.Router();
+import errorHandler from './middlewares/error_handler.js';
+import notFoundHandler from './middlewares/not_found_handler.js';
+import admin from "firebase-admin";
 /* import errorHandler from './middlewares/error_handler.js';
 import notFoundHandler from './middlewares/not_found_handler.js';
 import passport from './middlewares/passport.js'; */
+
+
+
+const serviceAccount = "./firebaseCredentials.json"; 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
+
+const router = express.Router();
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
