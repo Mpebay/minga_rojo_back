@@ -9,14 +9,17 @@
     "users": "node ./models/data/users.js",
     "authors": "node ./models/data/authors.js",
     "categories": "node ./models/data/categories.js",
-    "data": "node ./models/data/mangas.js"
+    "data": "node ./models/data/mangas.js",
+    "test": "mocha ./test/test.js"
   },
   "dependencies": {
     "@firebase/storage": "^0.11.2",
+    "@google-cloud/dialogflow": "^6.1.0",
     "@mercadopago/sdk-js": "^0.0.3",
     "@mercadopago/sdk-react": "^0.0.14",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -24,6 +27,7 @@
     "express": "^4.18.2",
     "firebase": "^10.4.0",
     "firebase-admin": "^11.11.0",
+    "googleapis": "^126.0.1",
     "http-errors": "~1.6.3",
     "joi": "^17.10.1",
     "joi-oid": "^1.1.2",
@@ -37,10 +41,15 @@
     "npm": "^10.1.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
+    "pb-util": "^1.0.3",
     "pug": "^3.0.2",
+    "socket.io": "^4.7.2",
     "supertest": "^6.3.3"
   },
   "devDependencies": {
-    "chai": "^4.3.10"
+    "@types/dialogflow": "^4.0.4",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "socket.io-client": "^4.7.2"
   }
 }

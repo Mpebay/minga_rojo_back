@@ -8,14 +8,22 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
+import bodyParser from 'body-parser'
 import errorHandler from './middlewares/error_handler.js';
 import notFoundHandler from './middlewares/not_found_handler.js';
 import admin from "firebase-admin";
+/* import errorHandler from './middlewares/error_handler.js';
+import notFoundHandler from './middlewares/not_found_handler.js';
+import passport from './middlewares/passport.js'; */
+
+
 
 const serviceAccount = "./firebaseCredentials.json"; 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
+
+const router = express.Router();
 
 const app = express();
 
@@ -31,8 +39,10 @@ app.use('/', indexRouter);
 app.use(function (req, res, next) {
   next(createError(404));
 });
-app.use(errorHandler)
-app.use(notFoundHandler)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+/* app.use(errorHandler)
+app.use(notFoundHandler) */
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
