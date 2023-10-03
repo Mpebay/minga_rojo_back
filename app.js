@@ -11,6 +11,7 @@ import indexRouter from './routes/index.js';
 import errorHandler from './middlewares/error_handler.js';
 import notFoundHandler from './middlewares/not_found_handler.js';
 
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -22,7 +23,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
 
 
