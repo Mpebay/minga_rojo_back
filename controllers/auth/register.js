@@ -1,5 +1,5 @@
 import User from '../../models/User.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 });
 
 async function create(req, res, next) {
-  
+
 
   let {
     email,
@@ -33,10 +33,10 @@ async function create(req, res, next) {
       verify_code: crypto.randomBytes(10).toString('hex')
     })
 
-    
+
     const verificationLink = `http://localhost:5173/auth/verify?code=${newUser.verify_code}`;
 
- 
+
     try {
       await transporter.sendMail({
         from: '"Verificación de correo" <santiagominga7@gmail.com>',
