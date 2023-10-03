@@ -32,7 +32,7 @@
     "joi": "^17.10.1",
     "joi-oid": "^1.1.2",
     "jsonwebtoken": "^9.0.2",
-    "mercadopago": "^0.0.6",
+    "mercadopago": "1.5.17",
     "mocha": "^10.2.0",
     "mongoose": "^7.5.0",
     "morgan": "~1.9.1",
