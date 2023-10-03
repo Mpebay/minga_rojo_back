@@ -1,11 +1,10 @@
-import express from "express";
 import dialogflow from "@google-cloud/dialogflow"
 //import { struct } from 'pb-util';
 //import keys from '../../config/keys.js';
 /* import getAuthUrl from "../google.js";
 import redirect from "../redirect.js"; */
 
-const router = express.Router();
+//const router = express.Router();
 
 
 /* //projectId: ID of the GCP project where Dialogflow agent is deployed

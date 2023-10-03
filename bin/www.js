@@ -8,13 +8,12 @@ import socket from '../controllers/socket/socket.js'
 
 
 
-const debug = debugModule("minga_rojo_back:server")
+const debug = debugModule("minga_rojo_back:server");
 
 let port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 let server = http.createServer(app);
-
 const io = new Server(server, { cors: { origin: '*' } });
 socket(io);
 
