@@ -48,20 +48,15 @@
   },
   "devDependencies": {
     "@types/dialogflow": "^4.0.4",
-    "chai": "^4.3.10",
-    "mocha": "^10.2.0",
     "socket.io-client": "^4.7.2",
     "pb-util": "^1.0.3",
     "pug": "^3.0.2",
     "supertest": "^6.3.3",
     "passport-local-mongoose": "^8.0.0",
-    "pug": "^3.0.2",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
-  },
-  "devDependencies": {
-    "chai": "^4.3.10",
+    "swagger-ui-express": "^5.0.0",
+     "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "supertest": "^6.3.3"
-  }
+  },
 }
