@@ -4,11 +4,11 @@ import { OAuth2Client } from 'google-auth-library';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 
-// Configuración de OAuth2
+
 const CLIENT_ID = process.env.CLIENT_ID;
 const client = new OAuth2Client(CLIENT_ID);
 
-// Configuración de Nodemailer
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -19,49 +19,127 @@ const transporter = nodemailer.createTransport({
 
 export default async (req, res, next) => {
   try {
-    // Obtenemos el token de Google
+    
     const token = req.body.token;
 
-    // Verificamos el token
+   
     const ticket = await client.verifyIdToken({
       idToken: token,
       audience: CLIENT_ID,
     });
 
-    // Obtenemos los datos del usuario
+   
     const { email, picture } = ticket.getPayload();
 
-    // Creamos el token JWT
+   
     const tokenJwt = jwt.sign(
       { email: email },
       process.env.SECRET,
       { expiresIn: 60 * 60 * 24 }
     );
 
-    // Buscamos el usuario en la base de datos
+    
     let user = await User.findOneAndUpdate({ email: email }, { online: true }, { new: true });
 
-    // Si no existe, lo creamos y mandamos mail de verificación
+    
     if (!user) {
       user = await User.create({
         email: email,
         password: null,
         photo: picture,
-        role: 4,
+        role: 0,
         verify_code: crypto.randomBytes(10).toString('hex'),
       });
 
-      // Construye la URL de verificación de correo
+      
       const verificationLink = `http://localhost:5173/auth/verify?code=${user.verify_code}`;
 
-      // Envía el correo de verificación
+     
       try {
         await transporter.sendMail({
-          from: '"Verificación de correo" <santiagominga7@gmail.com>',
+          from: '"MINGA" <santiagominga7@gmail.com>',
           to: user.email,
           subject: "Verifica tu correo electrónico",
-          html: `<p>Por favor, haz clic en el siguiente enlace para verificar tu correo electrónico:</p>
-               <a href="${verificationLink}">${verificationLink}</a>`,
+          html: `<!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Email Verification</title>
+              <style>
+                  body {
+                      font-family: Arial, sans-serif;
+                      background-color: #f7f7f7;
+                      margin: 0;
+                      padding: 0;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      min-height: 100vh;
+                  }
+          
+                  #container {
+                      max-width: 400px;
+                      width: 100%;
+                      background-color: #ffffff;
+                      border-radius: 10px;
+                      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                  }
+          
+                  #header {
+                      background-color: #ff9800; /* Color naranja */
+                      color: #ffffff;
+                      padding: 20px;
+                      text-align: center;
+                      border-top-left-radius: 10px;
+                      border-top-right-radius: 10px;
+                  }
+          
+                  h1 {
+                      font-size: 28px;
+                      margin: 0;
+                  }
+          
+                  #content {
+                      padding: 20px;
+                      text-align: center;
+                  }
+          
+                  p {
+                      font-size: 18px;
+                      color: #333;
+                      margin-bottom: 20px;
+                  }
+          
+                  a {
+                      display: inline-block;
+                      padding: 10px 30px;
+                      background-color: #ff9800; /* Color naranja */
+                      color: #ffffff;
+                      text-decoration: none;
+                      border-radius: 5px;
+                      font-size: 18px;
+                      transition: background-color 0.3s ease;
+                  }
+          
+                  a:hover {
+                      background-color: #ff5722; /* Cambio de color al pasar el mouse */
+                  }
+              </style>
+          </head>
+          <body>
+              <div id="container">
+                  <div id="header">
+                      <h1>Email Verification</h1>
+                  </div>
+                  <div id="content">
+                      <p>Thank you for registering! Please click the following link to verify your email:</p>
+                      <a href="${verificationLink}">Verify Email</a>
+                  </div>
+              </div>
+          </body>
+          </html>
+          `,
         });
       } catch (error) {
         console.error("Error al enviar el correo de verificación:", error);
@@ -76,7 +154,7 @@ export default async (req, res, next) => {
       is_verified: user.verified,
     };
 
-    // Si el usuario no está verificado, no le permitimos iniciar sesión
+    
     if (!user.verified) {
       return res.status(401).json({
           message: 'User not verified',
