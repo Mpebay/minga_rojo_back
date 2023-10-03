@@ -6,10 +6,6 @@ import userRouter from "./users.js"
 import express from 'express';
 import payments from "./payments.js"
 import commentsRouter from './comments.js';
-import swaggerUi from 'swagger-ui-express';
-import swaggerSpec from 'swagger-jsdoc';
-
-
 
 let router = express.Router();
 
@@ -21,8 +17,5 @@ router.use("/chapters", chaptersRouter)
 router.use("/manga", mangasRouter)
 router.use("/payment",payments)
 router.use("/comments", commentsRouter)
-router.use("/api-docs", swaggerUi.serve);
-router.get("/api-docs", swaggerUi.setup(swaggerSpec));
-
 
 export default router;

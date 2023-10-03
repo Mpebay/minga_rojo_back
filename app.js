@@ -9,14 +9,10 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import bodyParser from 'body-parser'
-import errorHandler from './middlewares/error_handler.js';
-import notFoundHandler from './middlewares/not_found_handler.js';
 import admin from "firebase-admin";
-import passport from './middlewares/passport.js';
-import passportLocalMongoose from 'passport-local-mongoose';
 import mongoose from 'mongoose'; // Importa la biblioteca mongoose
-import findOrCreatePlugin from 'mongoose-findorcreate';
-import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+// import findOrCreatePlugin from 'mongoose-findorcreate';
+
 
 const serviceAccount = "./firebaseCredentials.json"; 
 admin.initializeApp({
@@ -57,7 +53,7 @@ const usuarioSchema = new Schema({
 
 const usuario = mongoose.model("User", usuarioSchema);
 
-usuarioSchema.plugin(passportLocalMongoose);
-usuarioSchema.plugin(findOrCreatePlugin);
+// usuarioSchema.plugin(passportLocalMongoose);
+// usuarioSchema.plugin(findOrCreatePlugin);
 
 export default app;
