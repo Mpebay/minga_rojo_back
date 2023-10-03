@@ -4,7 +4,7 @@ import createOne from "../controllers/mangas/createOne.js";
 import findCategoryId from "../middlewares/mangas/findCategoryId.js";
 import mangaValidator from "../middlewares/mangas/mangaValidatorMiddle.js";
 import schema from "../validators/mangaValidator.js";
-import passport from "../milddleware/passport.js";
+import passport from "../middlewares/passport.js";
 import readAll from "../controllers/mangas/readAll.js";
 import readManga from "../controllers/mangas/read_one.js";
 import read from "../controllers/mangas/read.js";
@@ -15,10 +15,10 @@ import isPropertyManga from "../middlewares/isPropertyManga.js";
 import updateManga from "../controllers/mangas/update.js";
 import destroyManga from "../controllers/mangas/destroy.js";
 import updateMangaSchema from "../schema/updateMangaSchema.js";
-import validator from "../milddleware/validator.js";
 import multer from "multer";
 import fileFilter from "../middlewares/imgTransform/filterImg.js";
 import { imageUrl } from "../middlewares/chapters/imageUrl.js";
+import validator from "../middlewares/validator.js";
 
 const storage = multer.memoryStorage()
 const upload = multer({storage : storage,
