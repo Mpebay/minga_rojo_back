@@ -41,15 +41,14 @@
     "npm": "^10.1.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
-    "pb-util": "^1.0.3",
-    "pug": "^3.0.2",
-    "socket.io": "^4.7.2",
-    "supertest": "^6.3.3"
   },
   "devDependencies": {
     "@types/dialogflow": "^4.0.4",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
-    "socket.io-client": "^4.7.2"
+    "socket.io-client": "^4.7.2",
+    "pb-util": "^1.0.3",
+    "pug": "^3.0.2",
+    "supertest": "^6.3.3",
   }
 }
