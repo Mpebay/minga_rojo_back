@@ -1,6 +1,7 @@
 import Chapter from '../../models/Chapter.js';
 
 const create = async (req, res) => {
+    
     try {
         let newChapter = new Chapter(req.body)
         await newChapter.save()

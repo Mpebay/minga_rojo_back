@@ -13,14 +13,17 @@ import is_active from "../middlewares/is_active.js"
 import update from "../controllers/chapters/update.js";
 import validateChapter from "../validators/validateChapter.js";
 import destroy from "../controllers/chapters/destroy.js"
+import { imageUrl } from "../middlewares/chapters/imageUrl.js";
+import multer from "multer";
+import fileFilter from "../middlewares/imgTransform/filterImg.js";
 
+const storage = multer.memoryStorage()
+const upload = multer({storage : storage,
+                        fileFilter : fileFilter})
 const router = express.Router();
-
-
-router.get("/", getChapters);
-router.get('/me', passport.authenticate('jwt', { session: false }), find_id, isPropertyOf, get_me);
 router.get("/:id", get_one);
-router.post ("/", addCoverPhoto, validator(chapterValidator), create)
+router.get("/", getChapters);
+router.post("/",upload.array('file',100), passport.authenticate("jwt", {session:false}),  isPropertyOf, imageUrl, addCoverPhoto, validator(chapterValidator), create)
 router.put("/:id",passport.authenticate('jwt', { session: false }), find_id, is_active, isPropertyOf, validator(validateChapter), update)
 router.delete('/:id', passport.authenticate('jwt', { session: false }), find_id,is_active ,isPropertyOf, destroy);
 export default router;
