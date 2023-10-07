@@ -1,8 +1,8 @@
 import app from '../app.js';
 import debugModule from 'debug';
 import http from 'http';
-// import { Server } from 'socket.io'
-// import socket from '../controllers/socket/socket.js'
+import { Server } from 'socket.io'
+import socket from '../controllers/socket/socket.js'
 
 
 
@@ -14,8 +14,8 @@ let port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 let server = http.createServer(app);
-// const io = new Server(server, { cors: { origin: '*' } });
-// socket(io);
+const io = new Server(server, { cors: { origin: '*' } });
+socket(io);
 
 
 server.listen(port, () => console.log("server listen " + port));
